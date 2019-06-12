@@ -1,4 +1,4 @@
-from conans import ConanFile, CMake, tools
+from conans import ConanFile, CMake
 
 
 class Cli11Conan(ConanFile):
@@ -14,8 +14,9 @@ class Cli11Conan(ConanFile):
     exports_sources = "*"
 
     def source(self):
-        git = tools.Git()
-        git.clone("https://github.com/CLIUtils/CLI11.git", "v" + self.version)
+        self.run("git clone --branch v"
+                 + self.version
+                 + " https://github.com/CLIUtils/CLI11.git")
 
     def build(self):
         pass
@@ -24,7 +25,7 @@ class Cli11Conan(ConanFile):
         cmake = CMake(self)
         cmake.definitions["BUILD_TESTING"] = "OFF"
         cmake.definitions["CLI11_EXAMPLES"] = "OFF"
-        cmake.configure()
+        cmake.configure(source_folder="CLI11")
         cmake.install()
 
     def package_info(self):
