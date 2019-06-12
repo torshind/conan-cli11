@@ -5,7 +5,8 @@ class Cli11Conan(ConanFile):
     name = "CLI11"
     version = "1.8.0"
     license = "BSD-3-Clause"
-    url = "https://cliutils.gitlab.io/"
+    homepage = "https://cliutils.gitlab.io/"
+    url = "https://github.com/torshind/conan-cli11/"
     description = "Command line parser for C++11"
     settings = "os", "compiler", "build_type", "arch"
     options = {"shared": [True, False]}
